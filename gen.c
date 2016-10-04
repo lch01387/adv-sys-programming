@@ -7,6 +7,7 @@
 
 #define MAX_NUM_FILE  9999
 #define MAX_FILE_SIZE (32 * 1024)   // in MB
+// test comment
 
 int
 main(int argc, char *argv[])
