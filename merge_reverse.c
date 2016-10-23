@@ -5,8 +5,7 @@
 
 int readaline_and_out(FILE *fin, FILE *fout);
 
-int
-main(int argc, char *argv[])
+int main(int argc, char *argv[])
 {
     FILE *file1, *file2, *fout;
     int eof1 = 0, eof2 = 0;
@@ -63,26 +62,30 @@ leave1:
 leave0:
     return ret; 
 }
-
-/* Read a line from fin and write it to fout */
-/* return 1 if fin meets end of file */
-int
-readaline_and_out(FILE *fin, FILE *fout)
-{    
-    int ch, count = 0;
-
+int readaline_and_out(FILE *fin, FILE *fout)
+{
+    int i, j, temp, ch, count = 0;
+    char str[100];
     do {
         if ((ch = fgetc(fin)) == EOF) {
             if (!count)
                 return 1;
             else {
-                fputc(0x0a, fout);
                 break;
             }
         }
-        fputc(ch, fout);
+        str[count] = ch;
         count++;
     } while (ch != 0x0a);
+    str[count] = '\0';
+    i = 0; j = count-2;
+    while(i<j){
+        temp = str[i];
+        str[i] = str[j];
+        str[j] = temp;
+        i++; j--;
+    }
+    fputs(str, fout);
     return 0;
 }
 
