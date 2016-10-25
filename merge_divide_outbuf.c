@@ -123,11 +123,11 @@ int readaline_and_out(char* buf_in, char* buf_out, int* cursor, int* cursor_out)
     int i;
     char str[1000];
     
-    if(buf_in[*cursor] == '\0' || *cursor > 104857199){
+    if(buf_in[*cursor] == '\0'){
         return 1;
     }
     count = 0;
-    while((ch=buf_in[*cursor+count]) != '\n'){
+    while((ch=buf_in[*cursor+count]) != '\n' && ch!='\0'){
         str[count] = ch;
         count++;
     }
@@ -142,15 +142,12 @@ int readaline_and_out(char* buf_in, char* buf_out, int* cursor, int* cursor_out)
 }
 
 void reverse(char* str, int count){
-    char temp, i;
-    
-    for(i=0; i<count/2; i++){
-        swap(&str[i], &str[count-1-i]);
+    int i=0; int j=count-1;
+    int tmp;
+    while(i<j){
+        tmp = str[i];
+        str[i] = str[j];
+        str[j] = tmp;
+        i++; j--;
     }
-}
-
-void swap(char *a, char *b){
-    int temp = *a;
-    *a = *b;
-    *b = temp;
 }
