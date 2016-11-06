@@ -25,6 +25,9 @@ void reverse_remain(char *buf_in, char *buf_out);
 int get_line_num(char *buf);
 void swap(char *a, char *b);
 
+char buf_in[2][FILE_SIZE];
+char buf_remain[FILE_SIZE];
+
 int main(int argc, char *argv[])
 {
     int file1, file2, fout;
@@ -32,8 +35,6 @@ int main(int argc, char *argv[])
     int line_num[2], common_line;
     int remain_limit = 0, remain_line = 0;
     int cursor_remain_in = 0, cursor_remain_out = 0;
-    char buf_in[2][FILE_SIZE];
-    char buf_remain[FILE_SIZE];
     int *limit, *temp_line;
     int *line_in, **cursor_in;
     int *cursor_out;
